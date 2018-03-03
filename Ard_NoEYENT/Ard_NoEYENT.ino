@@ -1,15 +1,21 @@
-#define outPin6 6
+//define LED pin 
+int LEDS[] = {0,1,2,3,4,5,6,7};
+
 
 void setup() {
-  pinMode(outPin6, OUTPUT); //set pin 6 to output
+  for(int LED_NUM = 0; LED_NUM < sizeof(LEDS); LED_NUM++) {
+    pinMode(LEDS[LED_NUM], OUTPUT);
+  }
+
 
 }
 
 void loop() {
-  digitalWrite(outPin6, HIGH);
-  delay(1000);
-  digitalWrite(outPin6, LOW);
-  delay(1000);
-  Serial.println("on");
+  for(int LED_NUM = 0; LED_NUM < sizeof(LEDS); LED_NUM++) {
+    digitalWrite(LEDS[LED_NUM],HIGH);
+    delay(500);
+    digitalWrite(LEDS[LED_NUM],LOW);
+    delay(500);
+  }
 
 }
