@@ -98,23 +98,30 @@ void displayResult() {
   //Changes comparison
   for( int LED_NUM = 0; LED_NUM <5; LED_NUM++) {
     if(LEDHITS[LED_NUM] != PREV_LEDHITS[LED_NUM]) {
-      if(LEDHITS[LED_NUM] == -1) {
+     /*
+      Serial.print(LEDHITS[LED_NUM]);
+      Serial.print(", ");
+      Serial.println(PREV_LEDHITS[LED_NUM]);
+     */
+      if((LEDHITS[LED_NUM] == -1) && (PREV_LEDHITS[LED_NUM] == 1)) {
         Serial.print("L");
         Serial.print(LED_NUM);
         Serial.println(":PREV SEEN, CURR NOT SEEN");
       }
-      else {
+      else if((LEDHITS[LED_NUM] == 1) && (PREV_LEDHITS[LED_NUM] == -1)){
         Serial.print("L");
         Serial.print(LED_NUM);
         Serial.println(":PREV NOT SEEN, CURR SEEN");
       }
+     
+      //update previous LED HITS result);
+      PREV_LEDHITS[LED_NUM] = LEDHITS[LED_NUM];
     }
   }
   Serial.println("");
   Serial.println("========================END==========================");
+  delay(10000);
 
-  //update previous LED HITS result);
-  memcpy(LEDHITS,PREV_LEDHITS, 5*sizeof(int)); 
 }
 
 
