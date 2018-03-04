@@ -31,9 +31,14 @@ void setup() {
 void loop() {
   for(int LED_NUM = 0; LED_NUM < 8; LED_NUM++) {
     digitalWrite(LEDS[LED_NUM],HIGH);
-    Serial.println(LEDS[LED_NUM]);
+   // Serial.println(LEDS[LED_NUM]);
     delay(500);
     digitalWrite(LEDS[LED_NUM],LOW);
+    if(rsp_clicked == HIGH) {
+      Serial.println("rsp is clicked");  
+      rsp_clicked = LOW;
+    }
+    
     int r_delay = random(200, 2000);
     delay(r_delay);
   }
@@ -42,8 +47,8 @@ void loop() {
 
 void click() {
   rsp_clicked = HIGH;
-  Serial.println("rsp_clicked");
-  rsp_clicked = LOW; //these are just for later use maybe..
+  //Serial.println("rsp is clicked");
+  //rsp_clicked = LOW; //these are just for later use maybe..
 }
 
 
