@@ -5,7 +5,7 @@ const byte rsp_but = 2;
 volatile byte rsp_clicked = LOW;
  
 //define LED pin 
-int LEDS[] = {3,4,5,6,7,8,9,10};
+int LEDS[] = {3,4,5,6,7};
 
 void setup() {
   Serial.begin(baud_rate);
@@ -14,13 +14,13 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(rsp_but), click, HIGH);
 
   
-  for(int LED_NUM = 0; LED_NUM < sizeof(LEDS); LED_NUM++) {
+  for(int LED_NUM = 0; LED_NUM < 5; LED_NUM++) {
     pinMode(LEDS[LED_NUM], OUTPUT);
   }
 
   //shuffle LEDS ord
-  for (int i = 0; i < sizeof(LEDS); i++) {
-    int r = random(i, 7);
+  for (int i = 0; i < 5; i++) {
+    int r = random(i, 4);
     int temp = LEDS[i];
     LEDS[i] = LEDS[r];
     LEDS[r] = temp;
@@ -29,9 +29,9 @@ void setup() {
 }
 
 void loop() {
-  for(int LED_NUM = 0; LED_NUM < 8; LED_NUM++) {
+  for(int LED_NUM = 0; LED_NUM < 5; LED_NUM++) {
     digitalWrite(LEDS[LED_NUM],HIGH);
-   // Serial.println(LEDS[LED_NUM]);
+    Serial.println(LEDS[LED_NUM]);
     delay(500);
     digitalWrite(LEDS[LED_NUM],LOW);
     if(rsp_clicked == HIGH) {
